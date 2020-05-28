@@ -1,0 +1,294 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     12037,        286]
+NotebookOptionsPosition[     11510,        265]
+NotebookOutlinePosition[     11942,        282]
+CellTagsIndexPosition[     11899,        279]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearSystemCache", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"amp", "=", "0.001"}], ";", " ", 
+  RowBox[{"\[Omega]", "=", "5"}], ";", " ", 
+  RowBox[{"mu", "=", "0.05"}], ";", 
+  RowBox[{"g", "=", "0.01"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Kapitzapendulum", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"x", "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{"y", "[", "t", "]"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"x", "[", "t", "]"}], "]"}]}], 
+         RowBox[{"(", 
+          RowBox[{"g", "+", 
+           RowBox[{"amp", "*", "\[Omega]", "*", "\[Omega]", "*", 
+            RowBox[{"Cos", "[", 
+             RowBox[{"\[Omega]", "*", "t"}], "]"}]}]}], ")"}]}], "-", 
+        RowBox[{"mu", "*", 
+         RowBox[{"y", "[", "t", "]"}]}]}]}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", "[", "t", "]"}], "}"}], "/.", 
+       RowBox[{"First", "[", 
+        RowBox[{"NDSolve", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Kapitzapendulum", ",", 
+            RowBox[{
+             RowBox[{"x", "[", "0", "]"}], "\[Equal]", 
+             RowBox[{"Pi", "+", "0.001"}]}], ",", 
+            RowBox[{
+             RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0.05"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"x", "[", "t", "]"}], ",", 
+            RowBox[{"y", "[", "t", "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", "150"}], "}"}], ",", 
+          RowBox[{"StartingStepSize", "\[Rule]", "0.001"}]}], "]"}], "]"}]}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "120"}], "}"}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tmax", "=", 
+   RowBox[{"10", "*", "Pi"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"AttractingWell", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sign", "[", 
+      RowBox[{
+       RowBox[{"Abs", "[", 
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{
+           RowBox[{"x", "[", "t", "]"}], ",", 
+           RowBox[{"2", "*", "Pi"}]}], "]"}], "-", "Pi"}], "]"}], "-", 
+       "0.1"}], "]"}], "/.", 
+     RowBox[{"First", "[", 
+      RowBox[{"NDSolve", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Kapitzapendulum", ",", 
+          RowBox[{
+           RowBox[{"x", "[", "0", "]"}], "\[Equal]", "a"}], ",", 
+          RowBox[{
+           RowBox[{"y", "[", "0", "]"}], "\[Equal]", "b"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "[", "t", "]"}], ",", 
+          RowBox[{"y", "[", "t", "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "tmax"}], "}"}]}], "]"}], "]"}]}], "/.", 
+    
+    RowBox[{"t", "\[Rule]", "tmax"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<a.001.png\>\"", ",", 
+     RowBox[{"DensityPlot", "[", 
+      RowBox[{
+       RowBox[{"AttractingWell", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "0", ",", 
+         RowBox[{"2", "*", "Pi"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"b", ",", 
+         RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+       RowBox[{"MaxRecursion", "\[Rule]", "3"}], ",", 
+       RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+       RowBox[{"PlotPoints", "\[Rule]", "130"}], ",", 
+       RowBox[{"ColorFunction", "\[Rule]", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"#", " ", "\[NotEqual]", " ", "1"}], ",", "Blue", ",", 
+            "Yellow"}], "]"}], " ", "&"}], ")"}]}], ",", " ", 
+       RowBox[{"FrameTicks", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"None", ",", "None", ",", "None", ",", "None"}], "}"}]}]}], 
+      "]"}]}], "]"}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"b", ",", "a", ",", 
+             RowBox[{"AttractingWell", "[", 
+              RowBox[{"a", ",", "b"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"a", ",", "0", ",", 
+             RowBox[{"2", "*", "Pi"}], ",", "0.05"}], "}"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"b", ",", "0", ",", 
+           RowBox[{"2", "*", "Pi"}], ",", "0.05"}], "}"}]}], "]"}], ",", 
+       "1"}], "]"}]}], ";", "\n", 
+    RowBox[{"Grid", "[", "data", "]"}], ";", "\n", 
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\<amp_0.08.dat\>\"", ",", "data"}], "]"}], ";"}], 
+   "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7017386017914467`*^9, 3.701738622884426*^9}, {
+   3.7017569009235497`*^9, 3.70175690132267*^9}, {3.706064506303529*^9, 
+   3.706064549899929*^9}, {3.706064659292776*^9, 3.706064674873945*^9}, {
+   3.706064802071607*^9, 3.706064802458379*^9}, {3.706066397751564*^9, 
+   3.706066402935009*^9}, {3.706069268669139*^9, 3.706069272625988*^9}, {
+   3.706073198811121*^9, 3.706073208960292*^9}, {3.7060740593989477`*^9, 
+   3.706074063795237*^9}, {3.706075357332066*^9, 3.706075365763483*^9}, {
+   3.706077372872224*^9, 3.7060773838267317`*^9}, {3.706080464791967*^9, 
+   3.706080472008555*^9}, {3.7060828038592157`*^9, 3.706082817162662*^9}, {
+   3.7061489695969954`*^9, 3.7061489778342743`*^9}, {3.7061504430336313`*^9, 
+   3.706150447467676*^9}, {3.706152763789413*^9, 3.7061527794751368`*^9}, {
+   3.706152916681876*^9, 3.706152926443688*^9}, {3.7061531349279737`*^9, 
+   3.706153141564402*^9}, {3.7061534223933372`*^9, 3.706153427858156*^9}, {
+   3.706236089936344*^9, 3.706236139137753*^9}, 3.706242923223475*^9, 
+   3.706243392532609*^9, {3.70624440398033*^9, 3.7062444066153603`*^9}, {
+   3.7062448737366*^9, 3.706244955762362*^9}, {3.706245021578076*^9, 
+   3.706245042498356*^9}, {3.706245407460565*^9, 3.706245413004923*^9}, {
+   3.706309467615457*^9, 3.706309481407847*^9}, {3.706309987665411*^9, 
+   3.70631000018762*^9}, {3.706347738911989*^9, 3.706347739480329*^9}, {
+   3.706347930114032*^9, 3.706347934828557*^9}, {3.706348084607892*^9, 
+   3.706348120630988*^9}, {3.7063509127635403`*^9, 3.706350916488785*^9}, {
+   3.70635116805132*^9, 3.706351172048868*^9}, {3.706352526659379*^9, 
+   3.706352529645237*^9}, {3.706353510435313*^9, 3.706353515275313*^9}, {
+   3.7063927466262608`*^9, 3.7063927506489763`*^9}, {3.706396413925682*^9, 
+   3.7063964191147738`*^9}, {3.706396633369823*^9, 3.70639663796428*^9}, {
+   3.706397161518963*^9, 3.7063971675293083`*^9}, {3.706398247971695*^9, 
+   3.7063982512785177`*^9}, {3.706401058727079*^9, 3.706401065688251*^9}, {
+   3.706403894432765*^9, 3.7064038973704033`*^9}, {3.706405299286337*^9, 
+   3.7064053038317747`*^9}, {3.7064062359744263`*^9, 3.706406238874873*^9}, {
+   3.706406494375495*^9, 3.70640649984164*^9}, {3.706406808807616*^9, 
+   3.706406812209158*^9}, {3.706407973228406*^9, 3.706407977370935*^9}, {
+   3.706408946016748*^9, 3.706408949606448*^9}, {3.706409374496369*^9, 
+   3.706409379524458*^9}, {3.706410577415954*^9, 3.7064105812449493`*^9}, {
+   3.706433146302657*^9, 3.706433151524115*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "NDSolve","ndinnt",
+   "\"Initial condition \\!\\(\\*RowBox[{\\\"a\\\"}]\\) is not a number or a \
+rectangular array of numbers.\"",2,6,2,16198259311722645546,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.706433159292844*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","rmix",
+   "\"Elements of \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"x\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"y\\\", \\\"[\\\", \\\"t\\\", \\\"]\\\"}]}], \\\",\\\
+\", RowBox[{RowBox[{SuperscriptBox[\\\"y\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{RowBox[{RowBox[{\\\"-\\\", RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"0.01`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.025`\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}]}]}], \\\")\\\"}]}], \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", \
+RowBox[{\\\"x\\\", \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"]\\\"}]}], \
+\\\"-\\\", RowBox[{\\\"0.05`\\\", \\\" \\\", RowBox[{\\\"y\\\", \\\"[\\\", \\\
+\"t\\\", \\\"]\\\"}]}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"x\\\
+\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"a\\\"}], \\\",\\\
+\", RowBox[{RowBox[{\\\"y\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"b\\\"}]}], \\\"}\\\"}]\\) are a mixture of lists and \
+nonlists.\"",2,6,3,16198259311722645546,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.706433159407894*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","rmix",
+   "\"Elements of \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"x\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"10\\\", \\\" \\\", \
+\\\"\[Pi]\\\"}], \\\"]\\\"}], \\\"\[Equal]\\\", RowBox[{\\\"y\\\", \\\"[\\\", \
+RowBox[{\\\"10\\\", \\\" \\\", \\\"\[Pi]\\\"}], \\\"]\\\"}]}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"y\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"10\\\", \\\" \\\", \
+\\\"\[Pi]\\\"}], \\\"]\\\"}], \\\"\[Equal]\\\", RowBox[{RowBox[{RowBox[{\\\"-\
+\\\", \\\"0.035`\\\"}], \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", RowBox[{\\\
+\"x\\\", \\\"[\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"]\\\"}], \\\"]\\\"}]}], \\\"-\\\", RowBox[{\\\"0.05`\\\", \\\" \\\", \
+RowBox[{\\\"y\\\", \\\"[\\\", RowBox[{\\\"10\\\", \\\" \\\", \\\"\[Pi]\\\"}], \
+\\\"]\\\"}]}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"x\\\", \\\"[\
+\\\", \\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"a\\\"}], \\\",\\\", \
+RowBox[{RowBox[{\\\"y\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"b\\\"}]}], \\\"}\\\"}]\\) are a mixture of lists and \
+nonlists.\"",2,6,4,16198259311722645546,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7064331594161882`*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.706237984707965*^9, 3.706237985827818*^9}}]
+},
+WindowSize->{1366, 681},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.5, 1.5 Inherited],
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 7643, 181, 661, "Input"],
+Cell[8225, 205, 282, 6, 34, "Message"],
+Cell[8510, 213, 1435, 22, 60, "Message"],
+Cell[9948, 237, 1451, 22, 60, "Message"]
+}, Open  ]],
+Cell[11414, 262, 92, 1, 46, "Input"]
+}
+]
+*)
+
